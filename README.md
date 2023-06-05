@@ -41,6 +41,10 @@ ZBX_HOSTNAME = NOME PARA SEU PROXY
 $ docker compose up -d
 ``` 
 
+<p float="left">
+ <img src="https://github.com/Math-benites/zabbix-compose-proxy-6.0/blob/main/Fotos/Captura%20de%20tela%202023-06-04%20220202.png" width="600" />
+<p>
+
 Adicione em ADMINISTRACAO > PROXIES > CRIAR PROXY
 
 Insira em PROXY NAME o nome do seu proxy definido no arquivo .env_prx
