@@ -24,15 +24,15 @@ $ cd /opt/app
 $ git clone https://github.com/Math-benites/zabbix-compose-proxy-6.0.git . 
 ```
 
-### 🔧 ( Altere as Configuracoes )
+### 🔧 ( Altere as Configuracoes para comecar a usar )
 
 ```bash
 # Zabbix proxy.config
 $ nano ./zabbix/env_vars/.env_prx
-```
-### Altere para usar 
+``` 
 
 ZBX_SERVER_HOST= IP DO SERVER ZABBIX
+
 ZBX_HOSTNAME = NOME PARA SEU PROXY
 
 ### Rodando compose
