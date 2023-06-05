@@ -2,6 +2,7 @@ version: '3.5'
 services:
  zabbix-proxy-sqlite3:
   image: zabbix/zabbix-proxy-sqlite3:alpine-6.0-latest
+  restart: always
   ports:
    - "10051:10051"
   volumes:
