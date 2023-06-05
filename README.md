@@ -28,7 +28,7 @@ $ git clone https://github.com/Math-benites/zabbix-compose-proxy-6.0.git .
 
 ```bash
 # Zabbix proxy.config
-$ nano ./env_vars/.env_prx
+$ nano ./zabbix/env_vars/.env_prx
 ``` 
 
 ZBX_SERVER_HOST= IP DO SERVER ZABBIX
