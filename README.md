@@ -16,10 +16,12 @@ Antes de começar, você vai precisar ter instalado
 ```bash
 # Criando diretorios
 $ mkdir -p /opt/app/
-
+```
+```bash
 # Acessando diretorio
 $ cd /opt/app
-
+```
+```bash
 # Fazendo Git do projeto
 $ git clone https://github.com/Math-benites/zabbix-compose-proxy-6.0.git . 
 ```
