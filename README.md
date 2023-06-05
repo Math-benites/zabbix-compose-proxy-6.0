@@ -11,7 +11,7 @@ Antes de começar, você vai precisar ter instalado
 
 
 
-### 🎲 ( Rodando Compose )
+### 🪓 ( Preparando Estrutura )
 
 ```bash
 # Criando diretorios
@@ -35,8 +35,11 @@ ZBX_SERVER_HOST= IP DO SERVER ZABBIX
 
 ZBX_HOSTNAME = NOME PARA SEU PROXY
 
-### Rodando compose
+### 🎲 ( Rodando Compose )
+
+```bash
 $ docker compose up -d
+``` 
 
 Adicione em ADMINISTRACAO > PROXIES > CRIAR PROXY
 
