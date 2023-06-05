@@ -1,0 +1,103 @@
+version: '3.5'
+services:
+ zabbix-proxy-sqlite3:
+  image: zabbix/zabbix-proxy-sqlite3:alpine-6.0-latest
+  ports:
+   - "10061:10051"
+  volumes:
+   - /etc/localtime:/etc/localtime:ro
+   - /etc/timezone:/etc/timezone:ro
+   - ./zabbix/zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:ro
+   - ./zabbix/zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
+   - ./zabbix/zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
+   - ./zabbix/zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
+   - ./zabbix/zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro
+   - snmptraps:/var/lib/zabbix/snmptraps:rw
+  ulimits:
+   nproc: 65535
+   nofile:
+    soft: 20000
+    hard: 40000
+  env_file:
+   - ./zabbix/env_vars/.env_prx
+   - ./zabbix/env_vars/.env_prx_sqlite3
+  depends_on:
+   - zabbix-java-gateway
+   - zabbix-snmptraps
+  networks:
+   zbx_net_backend:
+    aliases:
+     - zabbix-proxy-sqlite3
+     - zabbix-proxy-alpine-sqlite3
+     - zabbix-proxy-sqlite3-alpine
+   zbx_net_frontend:
+  stop_grace_period: 30s
+  labels:
+   com.zabbix.description: "Zabbix proxy with SQLite3 database support"
+   com.zabbix.company: "Zabbix LLC"
+   com.zabbix.component: "zabbix-proxy"
+   com.zabbix.dbtype: "sqlite3"
+   com.zabbix.os: "alpine"
+
+ zabbix-agent:
+  image: zabbix/zabbix-agent:alpine-6.0-latest
+  restart: always
+  ports:
+   - "10050:10050"
+  volumes:
+   - /etc/localtime:/etc/localtime:ro
+   - /etc/timezone:/etc/timezone:ro
+   - ./zabbix/zbx_env/etc/zabbix/zabbix_agentd.d:/etc/zabbix/zabbix_agentd.d:ro
+   - ./zabbix/zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
+   - ./zabbix/zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
+   - ./zabbix/zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
+  env_file:
+   - ./zabbix/env_vars/.env_agent
+  privileged: true
+  pid: "host"
+  networks:
+   zbx_net_backend:
+    aliases:
+     - zabbix-agent
+     - zabbix-agent-passive
+     - zabbix-agent-alpine
+  stop_grace_period: 5s
+  labels:
+   com.zabbix.description: "Zabbix agent"
+   com.zabbix.company: "Zabbix LLC"
+   com.zabbix.component: "zabbix-agentd"
+   com.zabbix.os: "alpine"
+
+
+networks:
+  zbx_net_frontend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+  zbx_net_backend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    internal: true
+volumes:
+  snmptraps:
+
+secrets:
+  MYSQL_USER:
+    file: ./zabbix/env_vars/.MYSQL_USER
+  MYSQL_PASSWORD:
+    file: ./zabbix/env_vars/.MYSQL_PASSWORD
+  MYSQL_ROOT_USER:
+    file: ./zabbix/env_vars/.MYSQL_ROOT_USER
+  MYSQL_ROOT_PASSWORD:
+    file: ./zabbix/env_vars/.MYSQL_ROOT_PASSWORD
+#  client-key.pem:
+#    file: ./env_vars/.ZBX_DB_KEY_FILE
+#  client-cert.pem:
+#    file: ./env_vars/.ZBX_DB_CERT_FILE
+#  root-ca.pem:
+#    file: ./env_vars/.ZBX_DB_CA_FILE
+#  server-cert.pem:
+#    file: ./env_vars/.DB_CERT_FILE
+#  server-key.pem:
+##    file: ./env_vars/.DB_KEY_FILE 
