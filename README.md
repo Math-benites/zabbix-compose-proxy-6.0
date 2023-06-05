@@ -30,12 +30,12 @@ $ git clone https://github.com/Math-benites/zabbix-compose-proxy-6.0.git .
 # Zabbix proxy.config
 $ nano ./zabbix/env_vars/.env_prx
 ```
-# Altere para usar 
+### Altere para usar 
 
 ZBX_SERVER_HOST= IP DO SERVER ZABBIX
 ZBX_HOSTNAME = NOME PARA SEU PROXY
 
-# Rodando compose
+### Rodando compose
 $ docker compose up -d
 
 Adicione em ADMINISTRACAO > PROXIES > CRIAR PROXY
