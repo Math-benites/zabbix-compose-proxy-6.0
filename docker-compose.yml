@@ -22,9 +22,6 @@ services:
   env_file:
    - ./zabbix/env_vars/.env_prx
    - ./zabbix/env_vars/.env_prx_sqlite3
-  depends_on:
-   - zabbix-java-gateway
-   - zabbix-snmptraps
   networks:
    zbx_net_backend:
     aliases:
