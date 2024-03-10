@@ -14,11 +14,11 @@ services:
    - ./zabbix/zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
    - ./zabbix/zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro
    - snmptraps:/var/lib/zabbix/snmptraps:rw
-  ulimits:
-   nproc: 65535
-   nofile:
-    soft: 20000
-    hard: 40000
+#  ulimits:
+#   nproc: 65535
+#   nofile:
+#    soft: 20000
+#    hard: 40000
   env_file:
    - ./zabbix/env_vars/.env_prx
    - ./zabbix/env_vars/.env_prx_sqlite3
