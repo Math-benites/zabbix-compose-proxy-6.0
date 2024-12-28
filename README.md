@@ -1,4 +1,4 @@
-<h1 align="center">Zabbix - Compose - Proxy 6.0 </h1>
+<h1 align="center">Zabbix - Compose </h1>
 
 ### Pré-requisitos
 
@@ -7,30 +7,35 @@ Antes de começar, você vai precisar ter instalado
 
 [Docker Compose version v2.3.3 igual ou superior]
 
+
 [Docker Engine Version: 23.0.1 igual ou superior]
+
+
+[Instale o Docker seguindo este guia](https://github.com/Math-benites/docker-install-script)
 
 
 
 ### 🪓 ( Preparando Estrutura )
 
+Criando diretorios
 ```bash
-# Criando diretorios
-$ mkdir -p /opt/app/
+mkdir -p /opt/app/
 ```
+Acessando diretorio
 ```bash
-# Acessando diretorio
-$ cd /opt/app
+cd /opt/app
 ```
+
+Fazendo Git do projeto
 ```bash
-# Fazendo Git do projeto
-$ git clone https://github.com/Math-benites/zabbix-compose-proxy-6.0.git . 
+git clone https://github.com/Math-benites/zabbix-compose-proxy-6.0.git . 
 ```
 
 ### 🔧 ( Altere as Configuracoes para comecar a usar )
 
+Zabbix proxy.config
 ```bash
-# Zabbix proxy.config
-$ nano ./zabbix/env_vars/.env_prx
+nano ./zabbix/env_vars/.env_prx
 ``` 
 
 ZBX_SERVER_HOST= IP DO SERVER ZABBIX
@@ -40,7 +45,7 @@ ZBX_HOSTNAME = NOME PARA SEU PROXY
 ### 🎲 ( Rodando Compose )
 
 ```bash
-$ docker compose up -d
+docker compose up -d
 ``` 
 
 <p float="left">
